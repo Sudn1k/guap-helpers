@@ -1,0 +1,38 @@
+/* Базовые стили макетов (из экранов) */
+body{margin:0;font-family:'Roboto',Arial,sans-serif;background:#ffffff;color:#2B2F36}
+a{color:#005AAA}a:hover{color:#004785}
+button{font-family:inherit}
+input::placeholder{color:#5E6673}
+
+/* Обёртка прототипа */
+html{-webkit-text-size-adjust:100%}
+body.proto{margin:0;min-height:100vh;background:#E9EDF3;display:flex;justify-content:center;align-items:flex-start;padding:32px 16px;box-sizing:border-box}
+body.proto-wide{justify-content:flex-start}
+.device{background:#ffffff;border-radius:32px;overflow:hidden;box-shadow:0 24px 64px rgba(0,30,70,.18);flex-shrink:0}
+.proto-wide .device{border-radius:12px}
+.proto-back{position:fixed;top:12px;left:12px;z-index:10;display:inline-flex;align-items:center;height:36px;padding:0 14px;border-radius:999px;background:#ffffff;color:#005AAA;font:400 14px 'Roboto',Arial,sans-serif;text-decoration:none;box-shadow:0 2px 10px rgba(0,30,70,.12)}
+@media (max-width:480px){
+  body.proto{padding:0;background:#ffffff}
+  .device{border-radius:0;box-shadow:none}
+  .proto-back{display:none}
+}
+
+/* Страница со списком экранов */
+body.index{margin:0;background:#F4F7FB;color:#2B2F36;font-family:'Roboto',Arial,sans-serif}
+.index-wrap{max-width:1080px;margin:0 auto;padding:40px 20px 64px}
+.index-head{display:flex;align-items:center;gap:16px;margin-bottom:8px}
+.index-head img{width:56px;height:56px}
+.index-head h1{margin:0;font-size:30px;line-height:36px;font-weight:700;color:#005AAA}
+.index-lead{margin:0 0 20px;font-size:16px;line-height:24px;font-weight:300;max-width:720px}
+.index-rule{width:120px;height:4px;border-radius:2px;background:linear-gradient(to right,#005AAA 0%,#AB3A8D 75%,#E72B70 100%);margin:12px 0 24px}
+.index-start{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px}
+.index-start a{display:inline-flex;align-items:center;height:48px;padding:0 20px;border-radius:12px;background:#005AAA;color:#fff;text-decoration:none;font-size:16px}
+.index-start a.secondary{background:#fff;color:#005AAA;border:1.5px solid #005AAA}
+.index-section{margin-bottom:32px}
+.index-section h2{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:20px;font-weight:700;color:#005AAA}
+.index-section h2::before{content:"";width:4px;height:22px;border-radius:2px;background:linear-gradient(to top,#005AAA,#AB3A8D)}
+.index-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.index-grid a{display:flex;flex-direction:column;gap:4px;min-height:44px;padding:14px 16px;border-radius:14px;background:#fff;text-decoration:none;color:#2B2F36;box-shadow:0 1px 2px rgba(0,40,90,.06),0 4px 14px rgba(0,40,90,.06)}
+.index-grid a span{font-size:15px}
+.index-grid a small{font-size:12px;color:#5E6673}
+.index-foot{margin-top:40px;font-size:13px;line-height:19px;color:#5E6673}

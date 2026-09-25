@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Курсы · все — прототип</title>
+<link rel="icon" href="../img/app-icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&amp;display=swap">
+<link rel="stylesheet" href="../css/app.css">
+</head>
+<body class="proto">
+<a class="proto-back" href="../index.html">← Все экраны</a>
+<div class="device" id="app"></div>
+<template id="tpl-Courses">
+<div style="width: 390px; height: {{screenHeight}}px; position: relative; overflow: hidden; background: #ffffff; font-family: 'Roboto', Arial, sans-serif; color: #2B2F36; display: flex; flex-direction: column;">
+
+<header style="flex-shrink: 0; display: flex; flex-direction: column; background: #ffffff; border-bottom: 1px solid #EEF1F5;">
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px 0 8px;">
+<a href="More.html" style="height: 44px; padding: 0 8px 0 0; display: inline-flex; align-items: center; gap: 2px; color: #005AAA; font-size: 16px; text-decoration: none;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>Ещё</a>
+<a href="Notifications.html" aria-label="Уведомления, 3 непрочитанных" style="position: relative; width: 44px; height: 44px; border-radius: 12px; background: #F4F7FB; color: #005AAA; display: flex; align-items: center; justify-content: center; text-decoration: none;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13.5V10a6 6 0 0 0-12 0v6l-1.5 2h15"></path><path d="M10 21h4"></path></svg><span style="position: absolute; top: 4px; right: 3px; min-width: 18px; height: 18px; padding: 0 5px; box-sizing: border-box; border-radius: 9px; background: #E70F47; color: #ffffff; font-size: 11px; font-weight: 700; line-height: 14px; text-align: center; border: 2px solid #ffffff;">3</span></a>
+</div>
+<div style="padding: 4px 20px 10px; display: flex; flex-direction: column; gap: 4px;">
+<h1 style="margin: 0; font-size: 26px; line-height: 32px; font-weight: 700; color: #005AAA;">Бесплатные курсы</h1>
+<div style="font-size: 14px; font-weight: 300; color: #4A515C;">Подборка от группы: что стоит пройти и зачем</div>
+</div>
+<div style="display: flex; align-items: center; gap: 8px; padding: 0 0 8px 20px;">
+<button type="button" onClick="{{openSheet}}" aria-label="Фильтры: уровень и язык" style="flex-shrink: 0; height: 36px; margin: 4px 0; padding: 0 12px; border: {{filterBtnBorder}}; border-radius: 999px; background: {{filterBtnBg}}; color: {{filterBtnColor}}; font-size: 14px; display: inline-flex; align-items: center; gap: 6px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"></path><path d="M7 12h10"></path><path d="M10 17h4"></path></svg>Фильтры<sc-if value="{{hasExtra}}" hint-placeholder-val="{{ false }}"><span style="min-width: 18px; height: 18px; padding: 0 5px; box-sizing: border-box; border-radius: 9px; background: #ffffff; color: #005AAA; font-size: 12px; line-height: 18px;">{{extraCount}}</span></sc-if></button>
+<div style="width: 1px; height: 24px; background: #E3E8EF; flex-shrink: 0;"></div>
+<div role="group" aria-label="Направление" style="display: flex; gap: 8px; overflow-x: auto; padding-right: 20px; scrollbar-width: none;">
+<sc-for list="{{dirs}}" as="d" hint-placeholder-count="5">
+<button type="button" aria-pressed="{{d.on}}" onClick="{{d.pick}}" style="flex-shrink: 0; height: 36px; margin: 4px 0; padding: 0 14px; border: {{d.border}}; border-radius: 999px; background: {{d.bg}}; color: {{d.color}}; font-size: 14px; white-space: nowrap;">{{d.label}}</button>
+</sc-for>
+</div>
+</div>
+<sc-if value="{{hasExtra}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; align-items: center; gap: 8px; padding: 0 20px 10px; font-size: 13px; color: #4A515C;"><span>{{extraLabel}}</span><button type="button" onClick="{{resetExtra}}" style="height: 32px; padding: 0 8px; border: none; background: transparent; color: #005AAA; font-size: 13px;">Сбросить</button></div>
+</sc-if>
+</header>
+
+<main style="flex-grow: 1; min-height: 0; overflow-y: auto; padding: 16px 20px 24px; display: flex; flex-direction: column; gap: 14px;">
+<div style="font-size: 13px; color: #5E6673;">{{countLabel}}</div>
+<sc-for list="{{courses}}" as="c" hint-placeholder-count="3">
+<article style="display: flex; flex-direction: column; gap: 12px; padding: 16px; border-radius: 16px; background: #ffffff; box-shadow: 0 1px 2px rgba(0, 40, 90, 0.06), 0 4px 14px rgba(0, 40, 90, 0.06);">
+<div style="display: flex; align-items: center; gap: 10px;">
+<span style="width: 36px; height: 36px; border-radius: 10px; background: {{c.logoBg}}; color: {{c.logoColor}}; font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">{{c.logo}}</span>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 1px;"><span style="font-size: 14px; color: #2B2F36;">{{c.platform}}</span><span style="font-size: 12px; color: #5E6673;">{{c.dir}}</span></div>
+<span style="display: inline-flex; align-items: center; height: 24px; padding: 0 8px; border-radius: 999px; background: #E8F5EE; color: #235937; font-size: 12px;">бесплатно</span>
+</div>
+<h2 style="margin: 0; font-size: 18px; line-height: 24px; font-weight: 400; color: #2B2F36;">{{c.title}}</h2>
+<div style="display: flex; gap: 6px; flex-wrap: wrap;">
+<span style="display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 999px; background: #EAF2FB; color: #005AAA; font-size: 13px;"><span style="display: inline-flex; gap: 2px; align-items: flex-end;"><span style="width: 3px; height: 6px; border-radius: 1px; background: #005AAA;"></span><span style="width: 3px; height: 9px; border-radius: 1px; background: {{c.bar2}};"></span><span style="width: 3px; height: 12px; border-radius: 1px; background: {{c.bar3}};"></span></span>{{c.level}}</span>
+<span style="display: inline-flex; align-items: center; height: 26px; padding: 0 10px; border-radius: 999px; background: #F4F7FB; color: #4A515C; font-size: 13px;">{{c.lang}}</span>
+<span style="display: inline-flex; align-items: center; height: 26px; padding: 0 10px; border-radius: 999px; background: #F4F7FB; color: #4A515C; font-size: 13px;">{{c.length}}</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border-radius: 12px; background: #F4F7FB;">
+<span style="font-size: 12px; color: #005AAA;">Почему стоит пройти</span>
+<span style="font-size: 15px; line-height: 22px; font-weight: 300; color: #2B2F36;">{{c.why}}</span>
+</div>
+<a href="#" style="height: 44px; border-radius: 12px; background: #EAF2FB; color: #005AAA; font-size: 15px; display: flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none;">Открыть курс<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"></path><path d="M20 4l-8 8"></path><path d="M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"></path></svg></a>
+</article>
+</sc-for>
+
+<sc-if value="{{isEmpty}}" hint-placeholder-val="{{ false }}">
+<div style="padding: 32px 24px; border-radius: 16px; background: #F4F7FB; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center;">
+<span style="width: 56px; height: 56px; border-radius: 28px; background: #ffffff; color: #005AAA; display: flex; align-items: center; justify-content: center;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18.5V6a2 2 0 0 1 2-2h13v12"></path><path d="M19 19.5V20H6.5a2.5 2.5 0 0 1 0-5H15"></path></svg></span>
+<div style="font-size: 18px; font-weight: 400; color: #005AAA;">Таких курсов пока нет</div>
+<div style="font-size: 14px; line-height: 20px; font-weight: 300; color: #4A515C;">Попробуйте другой уровень или язык. Знаете хороший курс — расскажите администратору.</div>
+<button type="button" onClick="{{resetAll}}" style="height: 44px; padding: 0 16px; border: none; border-radius: 12px; background: #EAF2FB; color: #005AAA; font-size: 15px;">Сбросить фильтры</button>
+</div>
+</sc-if>
+</main>
+
+<nav aria-label="Основная навигация" style="flex-shrink: 0; height: 84px; box-sizing: border-box; padding: 6px 4px 20px; display: flex; background: #ffffff; border-top: 1px solid #E3E8EF; box-shadow: 0 -2px 16px rgba(0, 40, 90, 0.06);">
+<a href="Main.html" style="flex-grow: 1; flex-basis: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #5E6673; min-height: 52px;"><span style="width: 56px; height: 30px; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"></path><path d="M6 13.5V20h4v-5h4v5h4v-6.5"></path></svg></span><span style="font-size: 12px; font-weight: 400;">Главная</span></a>
+<a href="Schedule.html" style="flex-grow: 1; flex-basis: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #5E6673; min-height: 52px;"><span style="width: 56px; height: 30px; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12.5V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h8"></path><path d="M17.5 20h.5a2 2 0 0 0 2-2v-1.5"></path><path d="M8 3v4M16 3v4M4 10h16"></path></svg></span><span style="font-size: 12px; font-weight: 400;">Расписание</span></a>
+<a href="Tasks.html" style="flex-grow: 1; flex-basis: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #5E6673; min-height: 52px;"><span style="width: 56px; height: 30px; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7l2 2 3.5-3.5"></path><path d="M4 16.5l2 2L9.5 15"></path><path d="M13 7.5h7M13 17h7"></path></svg></span><span style="font-size: 12px; font-weight: 400;">Задания</span></a>
+<a href="Topics.html" style="flex-grow: 1; flex-basis: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #5E6673; min-height: 52px;"><span style="width: 56px; height: 30px; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 14.5V21l-6-4-6 4V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v5.5"></path></svg></span><span style="font-size: 12px; font-weight: 400;">Темы</span></a>
+<a href="More.html" aria-current="page" style="flex-grow: 1; flex-basis: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #005AAA; min-height: 52px;"><span style="width: 56px; height: 30px; border-radius: 15px; background: #EAF2FB; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1.5"></rect><rect x="14" y="4" width="6" height="6" rx="1.5"></rect><rect x="4" y="14" width="6" height="6" rx="1.5"></rect><path d="M14 17h6M17 14v6"></path></svg></span><span style="font-size: 12px; font-weight: 400;">Ещё</span></a>
+</nav>
+
+<sc-if value="{{sheetOpen}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end;">
+<button type="button" aria-label="Закрыть" onClick="{{closeSheet}}" style="position: absolute; inset: 0; border: none; padding: 0; background: rgba(16, 32, 56, 0.45);"></button>
+<div role="dialog" aria-modal="true" aria-label="Фильтры курсов" style="position: relative; border-radius: 24px 24px 0 0; background: #ffffff; display: flex; flex-direction: column; gap: 18px; padding: 8px 20px 28px; box-shadow: 0 -8px 32px rgba(0, 20, 50, 0.18);">
+<span style="align-self: center; width: 40px; height: 4px; border-radius: 2px; background: #D5DCE5;"></span>
+<div style="display: flex; align-items: center; justify-content: space-between;"><h2 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 700; color: #005AAA;">Фильтры</h2><button type="button" onClick="{{resetExtra}}" style="height: 44px; padding: 0 4px; border: none; background: transparent; color: #005AAA; font-size: 15px;">Сбросить</button></div>
+<div style="display: flex; flex-direction: column; gap: 10px;">
+<span style="font-size: 15px; color: #2B2F36;">Уровень</span>
+<div role="radiogroup" aria-label="Уровень" style="display: flex; flex-wrap: wrap; gap: 8px;">
+<sc-for list="{{levels}}" as="l" hint-placeholder-count="4"><button type="button" role="radio" aria-checked="{{l.on}}" onClick="{{l.pick}}" style="height: 44px; padding: 0 16px; border: {{l.border}}; border-radius: 999px; background: {{l.bg}}; color: {{l.color}}; font-size: 15px;">{{l.label}}</button></sc-for>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px;">
+<span style="font-size: 15px; color: #2B2F36;">Язык</span>
+<div role="radiogroup" aria-label="Язык" style="display: flex; flex-wrap: wrap; gap: 8px;">
+<sc-for list="{{langs}}" as="l" hint-placeholder-count="3"><button type="button" role="radio" aria-checked="{{l.on}}" onClick="{{l.pick}}" style="height: 44px; padding: 0 16px; border: {{l.border}}; border-radius: 999px; background: {{l.bg}}; color: {{l.color}}; font-size: 15px;">{{l.label}}</button></sc-for>
+</div>
+</div>
+<button type="button" disabled="{{showOff}}" onClick="{{closeSheet}}" style="margin-top: 4px; height: 52px; border: none; border-radius: 12px; background: {{showBg}}; color: {{showColor}}; font-size: 17px;">{{showLabel}}</button>
+</div>
+</div>
+</sc-if>
+</div>
+</template>
+<script src="../js/dc-lite.js"></script>
+<script src="../js/components/Courses.js"></script>
+<script>DCLite.mount("Courses", document.getElementById('app'), {});</script>
+</body>
+</html>

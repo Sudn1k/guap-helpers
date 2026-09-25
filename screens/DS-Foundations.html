@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ДС · Цвет, шрифт, сетка — прототип</title>
+<link rel="icon" href="../img/app-icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&amp;display=swap">
+<link rel="stylesheet" href="../css/app.css">
+</head>
+<body class="proto proto-wide">
+<a class="proto-back" href="../index.html">← Все экраны</a>
+<div class="device" id="app"></div>
+<template id="tpl-DS-Foundations">
+<div style="width: 1440px; height: 1480px; box-sizing: border-box; padding: 72px 80px; background: #ffffff; font-family: 'Roboto', Arial, sans-serif; color: #2B2F36; display: flex; flex-direction: column; gap: 56px;">
+
+<div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 48px;">
+<div style="display: flex; flex-direction: column; gap: 16px;">
+<div style="font-size: 14px; font-weight: 400; color: #5E6673; letter-spacing: 0.04em; text-transform: uppercase;">Приложение учебной группы · неофициальное · стилистика ГУАП</div>
+<h1 style="margin: 0; font-size: 56px; line-height: 64px; font-weight: 700; color: #005AAA;">Дизайн-система</h1>
+<div style="width: 240px; height: 4px; border-radius: 2px; background: linear-gradient(to right, #005AAA 0%, #AB3A8D 75%, #E72B70 100%);"></div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; width: 760px;">
+<div style="display: flex; flex-direction: column; gap: 6px;"><div style="font-size: 16px; font-weight: 400; color: #005AAA;">Синий — главный</div><div style="font-size: 14px; line-height: 20px; font-weight: 300;">Кнопки, заголовки, активные состояния.</div></div>
+<div style="display: flex; flex-direction: column; gap: 6px;"><div style="font-size: 16px; font-weight: 400; color: #005AAA;">Градиент — редко</div><div style="font-size: 14px; line-height: 20px; font-weight: 300;">Линейки, полоска у заголовка, баннер.</div></div>
+<div style="display: flex; flex-direction: column; gap: 6px;"><div style="font-size: 16px; font-weight: 400; color: #005AAA;">Много воздуха</div><div style="font-size: 14px; line-height: 20px; font-weight: 300;">Белый фон, карточки с мягкой тенью.</div></div>
+<div style="display: flex; flex-direction: column; gap: 6px;"><div style="font-size: 16px; font-weight: 400; color: #005AAA;">Доступность</div><div style="font-size: 14px; line-height: 20px; font-weight: 300;">Текст ≥ 4.5:1, зоны нажатия ≥ 44×44.</div></div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 24px;">
+<div style="display: flex; align-items: center; gap: 12px;"><div style="width: 4px; height: 28px; border-radius: 2px; background: linear-gradient(to top, #005AAA, #AB3A8D);"></div><h2 style="margin: 0; font-size: 28px; font-weight: 700; color: #005AAA;">Цвет</h2></div>
+
+<div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 20px;">
+<div style="display: flex; flex-direction: column; gap: 10px;"><div style="height: 96px; border-radius: 16px; background: #005AAA;"></div><div style="font-size: 16px; font-weight: 400;">Синий</div><div style="font-size: 13px; line-height: 18px; font-weight: 300; color: #5E6673;">#005AAA · 6.9:1<br>Главный цвет: кнопки, заголовки, активный таб</div></div>
+<div style="display: flex; flex-direction: column; gap: 10px;"><div style="height: 96px; border-radius: 16px; background: #006CB6;"></div><div style="font-size: 16px; font-weight: 400;">Синий 2</div><div style="font-size: 13px; line-height: 18px; font-weight: 300; color: #5E6673;">#006CB6 · 5.5:1<br>Из логотипа. Ссылки, вторичные акценты текста</div></div>
+<div style="display: flex; flex-direction: column; gap: 10px;"><div style="height: 96px; border-radius: 16px; background: #00B8EE;"></div><div style="font-size: 16px; font-weight: 400;">Голубой</div><div style="font-size: 13px; line-height: 18px; font-weight: 300; color: #5E6673;">#00B8EE · 2.3:1<br>Только декор и заливки. Не для текста</div></div>
+<div style="display: flex; flex-direction: column; gap: 10px;"><div style="height: 96px; border-radius: 16px; background: #AB3A8D;"></div><div style="font-size: 16px; font-weight: 400;">Фиолетовый</div><div style="font-size: 13px; line-height: 18px; font-weight: 300; color: #5E6673;">#AB3A8D · 5.6:1<br>Градиент, бейдж нижней недели</div></div>
+<div style="display: flex; flex-direction: column; gap: 10px;"><div style="height: 96px; border-radius: 16px; background: #E72B70;"></div><div style="font-size: 16px; font-weight: 400;">Розово-алый</div><div style="font-size: 13px; line-height: 18px; font-weight: 300; color: #5E6673;">#E72B70 · 4.2:1<br>Конец градиента, конфетти. Не для мелкого текста</div></div>
+<div style="display: flex; flex-direction: column; gap: 10px;"><div style="height: 96px; border-radius: 16px; background: #E70F47;"></div><div style="font-size: 16px; font-weight: 400;">Счётчик</div><div style="font-size: 13px; line-height: 18px; font-weight: 300; color: #5E6673;">#E70F47 · 4.6:1<br>Красный бренда: счётчик уведомлений, «Удалить»</div></div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 20px;">
+<div style="grid-column: span 3; display: flex; flex-direction: column; gap: 10px;">
+<div style="height: 96px; border-radius: 28px 6px 28px 6px; background: linear-gradient(to top right, #005AAA 0%, #AB3A8D 75%, #E72B70 100%);"></div>
+<div style="font-size: 16px; font-weight: 400;">Фирменный градиент</div>
+<div style="font-size: 13px; line-height: 18px; font-weight: 300; color: #5E6673;">#005AAA → #AB3A8D (75%) → #E72B70. Синий всегда слева или снизу. Только линейки, полоска у заголовка и главный баннер — не больше одного крупного градиента на экран.</div>
+</div>
+<div style="grid-column: span 3; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px;">
+<div style="display: flex; flex-direction: column; gap: 10px;"><div style="height: 96px; border-radius: 16px; overflow: hidden; display: flex; flex-direction: column;"><div style="flex-grow: 1; background: #009A49;"></div><div style="height: 40px; background: #E8F5EE; display: flex; align-items: center; padding: 0 12px; font-size: 14px; color: #235937;">легко</div></div><div style="font-size: 16px; font-weight: 400;">Зелёный</div><div style="font-size: 13px; line-height: 18px; font-weight: 300; color: #5E6673;">#009A49 — точка, иконка<br>#235937 на #E8F5EE — текст</div></div>
+<div style="display: flex; flex-direction: column; gap: 10px;"><div style="height: 96px; border-radius: 16px; overflow: hidden; display: flex; flex-direction: column;"><div style="flex-grow: 1; background: #FF6418;"></div><div style="height: 40px; background: #FFF1E8; display: flex; align-items: center; padding: 0 12px; font-size: 14px; color: #9C3022;">средне</div></div><div style="font-size: 16px; font-weight: 400;">Оранжевый</div><div style="font-size: 13px; line-height: 18px; font-weight: 300; color: #5E6673;">#FF6418 — точка, иконка<br>#9C3022 на #FFF1E8 — текст</div></div>
+<div style="display: flex; flex-direction: column; gap: 10px;"><div style="height: 96px; border-radius: 16px; overflow: hidden; display: flex; flex-direction: column;"><div style="flex-grow: 1; background: #E70F47;"></div><div style="height: 40px; background: #FDEBEF; display: flex; align-items: center; padding: 0 12px; font-size: 14px; color: #8B2346;">сложно</div></div><div style="font-size: 16px; font-weight: 400;">Красный</div><div style="font-size: 13px; line-height: 18px; font-weight: 300; color: #5E6673;">#E70F47 — точка, иконка<br>#8B2346 на #FDEBEF — текст</div></div>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 20px;">
+<div style="display: flex; align-items: center; gap: 12px;"><div style="width: 48px; height: 48px; border-radius: 12px; background: #2B2F36;"></div><div style="display: flex; flex-direction: column; gap: 2px;"><div style="font-size: 15px;">Текст</div><div style="font-size: 13px; font-weight: 300; color: #5E6673;">#2B2F36 · 13.4:1</div></div></div>
+<div style="display: flex; align-items: center; gap: 12px;"><div style="width: 48px; height: 48px; border-radius: 12px; background: #5E6673;"></div><div style="display: flex; flex-direction: column; gap: 2px;"><div style="font-size: 15px;">Вторичный</div><div style="font-size: 13px; font-weight: 300; color: #5E6673;">#5E6673 · 5.8:1</div></div></div>
+<div style="display: flex; align-items: center; gap: 12px;"><div style="width: 48px; height: 48px; border-radius: 12px; background: #A9B1BD;"></div><div style="display: flex; flex-direction: column; gap: 2px;"><div style="font-size: 15px;">Неактивный</div><div style="font-size: 13px; font-weight: 300; color: #5E6673;">#A9B1BD</div></div></div>
+<div style="display: flex; align-items: center; gap: 12px;"><div style="width: 48px; height: 48px; border-radius: 12px; background: #E3E8EF;"></div><div style="display: flex; flex-direction: column; gap: 2px;"><div style="font-size: 15px;">Граница</div><div style="font-size: 13px; font-weight: 300; color: #5E6673;">#E3E8EF</div></div></div>
+<div style="display: flex; align-items: center; gap: 12px;"><div style="width: 48px; height: 48px; border-radius: 12px; background: #EAF2FB;"></div><div style="display: flex; flex-direction: column; gap: 2px;"><div style="font-size: 15px;">Синий тинт</div><div style="font-size: 13px; font-weight: 300; color: #5E6673;">#EAF2FB</div></div></div>
+<div style="display: flex; align-items: center; gap: 12px;"><div style="width: 48px; height: 48px; border-radius: 12px; background: #F4F7FB; border: 1px solid #E3E8EF; box-sizing: border-box;"></div><div style="display: flex; flex-direction: column; gap: 2px;"><div style="font-size: 15px;">Подложка</div><div style="font-size: 13px; font-weight: 300; color: #5E6673;">#F4F7FB</div></div></div>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 48px;">
+<div style="grid-column: span 7; display: flex; flex-direction: column; gap: 24px;">
+<div style="display: flex; align-items: center; gap: 12px;"><div style="width: 4px; height: 28px; border-radius: 2px; background: linear-gradient(to top, #005AAA, #AB3A8D);"></div><h2 style="margin: 0; font-size: 28px; font-weight: 700; color: #005AAA;">Типографика · Roboto</h2></div>
+<div style="display: flex; flex-direction: column; border-top: 1px solid #E3E8EF;">
+<div style="display: flex; align-items: baseline; gap: 24px; padding: 14px 0; border-bottom: 1px solid #E3E8EF;"><div style="width: 180px; flex-shrink: 0; font-size: 13px; color: #5E6673;">H1 · Bold 28/34 · синий</div><div style="font-size: 28px; line-height: 34px; font-weight: 700; color: #005AAA;">Привет, Анна!</div></div>
+<div style="display: flex; align-items: baseline; gap: 24px; padding: 14px 0; border-bottom: 1px solid #E3E8EF;"><div style="width: 180px; flex-shrink: 0; font-size: 13px; color: #5E6673;">H2 · Bold 20/26 · синий</div><div style="font-size: 20px; line-height: 26px; font-weight: 700; color: #005AAA;">Ближайшие дедлайны</div></div>
+<div style="display: flex; align-items: baseline; gap: 24px; padding: 14px 0; border-bottom: 1px solid #E3E8EF;"><div style="width: 180px; flex-shrink: 0; font-size: 13px; color: #5E6673;">Подзаголовок · Regular 17/22</div><div style="font-size: 17px; line-height: 22px; font-weight: 400;">Базы данных</div></div>
+<div style="display: flex; align-items: baseline; gap: 24px; padding: 14px 0; border-bottom: 1px solid #E3E8EF;"><div style="width: 180px; flex-shrink: 0; font-size: 13px; color: #5E6673;">Кнопка · Regular 16/20</div><div style="font-size: 16px; line-height: 20px; font-weight: 400; color: #005AAA;">Принять приглашение</div></div>
+<div style="display: flex; align-items: baseline; gap: 24px; padding: 14px 0; border-bottom: 1px solid #E3E8EF;"><div style="width: 180px; flex-shrink: 0; font-size: 13px; color: #5E6673;">Текст · Light 16/24</div><div style="font-size: 16px; line-height: 24px; font-weight: 300;">Сдать отчёт по лабораторной в личном кабинете до конца дня.</div></div>
+<div style="display: flex; align-items: baseline; gap: 24px; padding: 14px 0; border-bottom: 1px solid #E3E8EF;"><div style="width: 180px; flex-shrink: 0; font-size: 13px; color: #5E6673;">Мета · Light 14/20 · серый</div><div style="font-size: 14px; line-height: 20px; font-weight: 300; color: #5E6673;">ауд. 52-18 · Б. Морская, 67</div></div>
+<div style="display: flex; align-items: baseline; gap: 24px; padding: 14px 0; border-bottom: 1px solid #E3E8EF;"><div style="width: 180px; flex-shrink: 0; font-size: 13px; color: #5E6673;">Подпись · Regular 12/16</div><div style="font-size: 12px; line-height: 16px; font-weight: 400; color: #5E6673;">Обновлено сегодня в 08:12</div></div>
+</div>
+<div style="font-size: 14px; line-height: 20px; font-weight: 300; color: #5E6673;">Bold — только заголовки. Regular — подзаголовки, кнопки, бейджи. Light — основной текст (не мельче 14 px и только тёмным цветом, чтобы не терять контраст). Запасной шрифт — Arial Regular / Bold.</div>
+</div>
+
+<div style="grid-column: span 5; display: flex; flex-direction: column; gap: 24px;">
+<div style="display: flex; align-items: center; gap: 12px;"><div style="width: 4px; height: 28px; border-radius: 2px; background: linear-gradient(to top, #005AAA, #AB3A8D);"></div><h2 style="margin: 0; font-size: 28px; font-weight: 700; color: #005AAA;">Сетка, радиусы, тени</h2></div>
+<div style="display: flex; flex-direction: column; gap: 10px;">
+<div style="font-size: 15px;">Отступы · шаг 4</div>
+<div style="display: flex; align-items: flex-end; gap: 14px;">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><div style="width: 4px; height: 4px; background: #005AAA; border-radius: 1px;"></div><div style="font-size: 12px; color: #5E6673;">4</div></div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><div style="width: 8px; height: 8px; background: #005AAA; border-radius: 2px;"></div><div style="font-size: 12px; color: #5E6673;">8</div></div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><div style="width: 12px; height: 12px; background: #005AAA; border-radius: 2px;"></div><div style="font-size: 12px; color: #5E6673;">12</div></div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><div style="width: 16px; height: 16px; background: #005AAA; border-radius: 3px;"></div><div style="font-size: 12px; color: #5E6673;">16</div></div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><div style="width: 20px; height: 20px; background: #005AAA; border-radius: 3px;"></div><div style="font-size: 12px; color: #5E6673;">20</div></div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><div style="width: 24px; height: 24px; background: #005AAA; border-radius: 4px;"></div><div style="font-size: 12px; color: #5E6673;">24</div></div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><div style="width: 32px; height: 32px; background: #005AAA; border-radius: 4px;"></div><div style="font-size: 12px; color: #5E6673;">32</div></div>
+</div>
+<div style="font-size: 13px; line-height: 18px; font-weight: 300; color: #5E6673;">Поля экрана 20 px · между карточками 12 px · между секциями 32 px</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px;">
+<div style="display: flex; flex-direction: column; gap: 8px;"><div style="height: 72px; border: 2px solid #005AAA; border-radius: 999px; box-sizing: border-box;"></div><div style="font-size: 13px; color: #5E6673;">999 · чипы, бейджи</div></div>
+<div style="display: flex; flex-direction: column; gap: 8px;"><div style="height: 72px; border: 2px solid #005AAA; border-radius: 12px; box-sizing: border-box;"></div><div style="font-size: 13px; color: #5E6673;">12 · кнопки, поля</div></div>
+<div style="display: flex; flex-direction: column; gap: 8px;"><div style="height: 72px; border: 2px solid #005AAA; border-radius: 16px; box-sizing: border-box;"></div><div style="font-size: 13px; color: #5E6673;">16 · карточки</div></div>
+<div style="display: flex; flex-direction: column; gap: 8px;"><div style="height: 72px; border: 2px solid #005AAA; border-radius: 28px 6px 28px 6px; box-sizing: border-box;"></div><div style="font-size: 13px; color: #5E6673;">28/6 · фоторамка</div></div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; padding: 16px; background: #F4F7FB; border-radius: 16px;">
+<div style="height: 80px; background: #ffffff; border-radius: 16px; box-shadow: 0 1px 2px rgba(0, 40, 90, 0.06), 0 4px 14px rgba(0, 40, 90, 0.06); display: flex; align-items: center; justify-content: center; font-size: 13px; color: #5E6673;">Карточка · тень 1</div>
+<div style="height: 80px; background: #ffffff; border-radius: 16px; box-shadow: 0 2px 6px rgba(0, 40, 90, 0.08), 0 12px 32px rgba(0, 40, 90, 0.12); display: flex; align-items: center; justify-content: center; font-size: 13px; color: #5E6673;">Шторка, таб-бар · тень 2</div>
+</div>
+</div>
+</div>
+
+</div>
+</template>
+<script src="../js/dc-lite.js"></script>
+<script src="../js/components/DS-Foundations.js"></script>
+<script>DCLite.mount("DS-Foundations", document.getElementById('app'), {});</script>
+</body>
+</html>

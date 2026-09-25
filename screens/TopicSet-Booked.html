@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Моя бронь · ждём напарника, есть место — прототип</title>
+<link rel="icon" href="../img/app-icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&amp;display=swap">
+<link rel="stylesheet" href="../css/app.css">
+</head>
+<body class="proto">
+<a class="proto-back" href="../index.html">← Все экраны</a>
+<div class="device" id="app"></div>
+<template id="tpl-TopicSet-Booked">
+<div style="width: 390px; height: 844px; overflow: hidden; background: #ffffff;">
+<dc-import name="TopicSet" mode="жду напарника" screen-height="844" hint-size="390px,844px"></dc-import>
+</div>
+</template>
+<template id="tpl-TopicSet">
+<div style="width: 390px; height: {{screenHeight}}px; position: relative; overflow: hidden; background: #ffffff; font-family: 'Roboto', Arial, sans-serif; color: #2B2F36; display: flex; flex-direction: column;">
+
+<header style="flex-shrink: 0; display: flex; flex-direction: column; background: #ffffff;">
+<sc-if value="{{offline}}" hint-placeholder-val="{{ false }}">
+<div role="status" style="display: flex; align-items: center; gap: 8px; padding: 8px 20px; background: #FFF1E8; color: #9C3022; font-size: 13px; line-height: 18px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18"></path><path d="M8.5 16.5a5 5 0 0 1 5.5-1"></path><path d="M5 12.5a10 10 0 0 1 3.5-2.3"></path><path d="M14 9.2a10 10 0 0 1 5 3.3"></path><path d="M12 20h.01"></path></svg>Нет сети · бронь недоступна, данные от 11:02</div>
+</sc-if>
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px 0 8px;">
+<a href="Topics.html" style="height: 44px; padding: 0 8px 0 0; display: inline-flex; align-items: center; gap: 2px; color: #005AAA; font-size: 16px; text-decoration: none;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>Темы</a>
+<a href="Notifications.html" aria-label="Уведомления, 3 непрочитанных" style="position: relative; width: 44px; height: 44px; border-radius: 12px; background: #F4F7FB; color: #005AAA; display: flex; align-items: center; justify-content: center; text-decoration: none;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13.5V10a6 6 0 0 0-12 0v6l-1.5 2h15"></path><path d="M10 21h4"></path></svg><span style="position: absolute; top: 4px; right: 3px; min-width: 18px; height: 18px; padding: 0 5px; box-sizing: border-box; border-radius: 9px; background: #E70F47; color: #ffffff; font-size: 11px; font-weight: 700; line-height: 14px; text-align: center; border: 2px solid #ffffff;">3</span></a>
+</div>
+</header>
+
+<main style="flex-grow: 1; min-height: 0; overflow-y: auto; padding: 8px 20px 24px; display: flex; flex-direction: column; gap: 16px;">
+
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<div style="font-size: 13px; color: #5E6673;">Философия</div>
+<h1 style="margin: 0; font-size: 26px; line-height: 32px; font-weight: 700; color: #005AAA;">Рефераты по философии</h1>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2px;">
+<span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: 999px; background: {{deadlineBg}}; color: {{deadlineColor}}; font-size: 13px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 0-8 8"></path><path d="M12 8v4l3 2"></path></svg>{{deadlineLabel}}</span>
+<span style="display: inline-flex; align-items: center; height: 28px; padding: 0 10px; border-radius: 999px; background: #F4F7FB; color: #4A515C; font-size: 13px;">до 3 человек</span>
+<span style="display: inline-flex; align-items: center; height: 28px; padding: 0 10px; border-radius: 999px; background: #F4F7FB; color: #4A515C; font-size: 13px;">занято {{takenCount}} из 12</span>
+</div>
+</div>
+
+<sc-if value="{{closed}}" hint-placeholder-val="{{ false }}">
+<div role="status" style="display: flex; gap: 12px; padding: 14px 16px; border-radius: 16px; background: #FDEBEF;">
+<span style="color: #E70F47; display: flex; flex-shrink: 0;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 0-8 8"></path><path d="M12 8v4l3 2"></path></svg></span>
+<div style="display: flex; flex-direction: column; gap: 4px;"><div style="font-size: 15px; font-weight: 400; color: #8B2346;">Дедлайн прошёл</div><div style="font-size: 14px; line-height: 20px; font-weight: 300; color: #4A515C;">Выбор закрылся 30 сентября. Сменить тему или команду теперь можно только через администратора.</div></div>
+</div>
+</sc-if>
+
+<sc-if value="{{showInvite}}" hint-placeholder-val="{{ true }}">
+<div style="padding: 16px; border-radius: 16px; background: #F2F7FD; border: 1px solid #CFE0F3; display: flex; flex-direction: column; gap: 12px;">
+<div style="display: flex; align-items: center; gap: 10px;"><span style="width: 36px; height: 36px; border-radius: 18px; background: #ffffff; color: #005AAA; font-size: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">ИП</span><div style="font-size: 14px; line-height: 19px; font-weight: 300; color: #4A515C;"><span style="font-weight: 400; color: #2B2F36;">Иван Петров</span> зовёт вас в команду</div></div>
+<div style="font-size: 17px; line-height: 22px;">Этика искусственного интеллекта</div>
+<div style="display: flex; gap: 10px;">
+<button type="button" disabled="{{actionsOff}}" onClick="{{acceptInvite}}" style="flex-grow: 1; flex-basis: 0; height: 44px; border: none; border-radius: 12px; background: {{primaryBg}}; color: {{primaryColor}}; font-size: 16px;">Принять</button>
+<button type="button" disabled="{{actionsOff}}" onClick="{{declineInvite}}" style="flex-grow: 1; flex-basis: 0; height: 44px; border: 1.5px solid {{secondaryBorder}}; border-radius: 12px; background: #ffffff; color: {{secondaryColor}}; font-size: 16px;">Отклонить</button>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{showNoTopic}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-radius: 16px; background: #FFF1E8; font-size: 14px; line-height: 20px; color: #9C3022;"><span style="width: 8px; height: 8px; border-radius: 4px; background: #FF6418; flex-shrink: 0;"></span>{{noTopicText}}</div>
+</sc-if>
+
+<sc-if value="{{hasMine}}" hint-placeholder-val="{{ false }}">
+<div style="padding: 16px; border-radius: 16px; background: #ffffff; border: 1.5px solid #005AAA; display: flex; flex-direction: column; gap: 12px;">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;"><span style="font-size: 13px; color: #005AAA;">{{mineCaption}}</span><span style="display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 999px; background: {{mineBadgeBg}}; color: {{mineBadgeColor}}; font-size: 12px;"><span style="width: 7px; height: 7px; border-radius: 4px; background: {{mineBadgeDot}};"></span>{{mineBadge}}</span></div>
+<div style="font-size: 18px; line-height: 23px;">{{mineTitle}}</div>
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<sc-for list="{{mineMembers}}" as="m" hint-placeholder-count="2">
+<div style="display: flex; align-items: center; gap: 10px;"><span style="width: 32px; height: 32px; border-radius: 16px; background: {{m.avatarBg}}; color: {{m.avatarColor}}; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">{{m.initials}}</span><span style="flex-grow: 1; font-size: 15px; font-weight: 300;">{{m.name}}</span><span style="font-size: 13px; color: {{m.stateColor}};">{{m.state}}</span></div>
+</sc-for>
+</div>
+<button type="button" disabled="{{actionsOff}}" onClick="{{leaveMine}}" style="height: 44px; border: 1.5px solid {{dangerBorder}}; border-radius: 12px; background: #ffffff; color: {{dangerColor}}; font-size: 16px;">{{leaveLabel}}</button>
+<sc-if value="{{canInviteMore}}" hint-placeholder-val="{{ false }}">
+<button type="button" disabled="{{inviteOff}}" onClick="{{openInvite}}" style="height: 44px; border: none; border-radius: 12px; background: {{inviteBg}}; color: {{inviteColor}}; font-size: 16px; display: flex; align-items: center; justify-content: center; gap: 8px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path><path d="M3 19a6 6 0 0 1 10-4.5"></path><path d="M18 13v6M15 16h6"></path></svg>Пригласить ещё · {{freeSlotsLabel}}</button>
+</sc-if>
+<sc-if value="{{teamFull}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; align-items: center; justify-content: center; gap: 8px; height: 44px; border-radius: 12px; background: #F4F7FB; color: #4A515C; font-size: 14px;">Команда собрана · 3 из 3</div>
+</sc-if>
+<div style="font-size: 12px; line-height: 17px; color: #5E6673;">{{leaveHint}}</div>
+</div>
+</sc-if>
+
+<div style="display: flex; align-items: center; justify-content: space-between; margin-top: 4px;">
+<div style="display: flex; align-items: center; gap: 10px;"><div style="width: 4px; height: 20px; border-radius: 2px; background: linear-gradient(to top, #005AAA, #AB3A8D);"></div><h2 style="margin: 0; font-size: 18px; line-height: 24px; font-weight: 700; color: #005AAA;">Все темы</h2></div>
+<div role="group" aria-label="Показать" style="display: flex; gap: 6px;">
+<sc-for list="{{filters}}" as="f" hint-placeholder-count="3">
+<button type="button" aria-pressed="{{f.on}}" onClick="{{f.pick}}" style="height: 32px; margin: 6px 0; padding: 0 12px; border: {{f.border}}; border-radius: 999px; background: {{f.bg}}; color: {{f.color}}; font-size: 13px;">{{f.label}}</button>
+</sc-for>
+</div>
+</div>
+
+<div style="border-radius: 16px; background: #ffffff; box-shadow: 0 1px 2px rgba(0, 40, 90, 0.06), 0 4px 14px rgba(0, 40, 90, 0.06); display: flex; flex-direction: column;">
+<sc-for list="{{topics}}" as="t" hint-placeholder-count="6">
+<div style="display: flex; align-items: center; gap: 12px; padding: 12px 12px 12px 14px; border-top: {{t.rowBorder}}; background: {{t.rowBg}};">
+<span style="width: 26px; flex-shrink: 0; font-size: 14px; color: #5E6673; text-align: right;">{{t.n}}</span>
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px;">
+<div style="font-size: 15px; line-height: 20px; font-weight: 400;">{{t.title}}</div>
+<div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;"><span style="display: inline-flex; align-items: center; gap: 5px; height: 22px; padding: 0 8px; border-radius: 999px; background: {{t.badgeBg}}; color: {{t.badgeColor}}; font-size: 12px;"><span style="width: 6px; height: 6px; border-radius: 3px; background: {{t.badgeDot}};"></span>{{t.badge}}</span><span style="font-size: 13px; font-weight: 300; color: #4A515C;">{{t.members}}</span></div>
+</div>
+<sc-if value="{{t.canPick}}" hint-placeholder-val="{{ false }}">
+<button type="button" disabled="{{t.pickOff}}" onClick="{{t.pick}}" aria-label="Выбрать тему «{{t.title}}»" style="flex-shrink: 0; height: 44px; padding: 0 14px; border: none; border-radius: 12px; background: {{t.pickBg}}; color: {{t.pickColor}}; font-size: 15px;">Выбрать</button>
+</sc-if>
+</div>
+</sc-for>
+</div>
+</main>
+
+<sc-if value="{{showToast}}" hint-placeholder-val="{{ false }}">
+<div role="status" style="position: absolute; left: 16px; right: 16px; bottom: 96px; display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-radius: 14px; background: #1F2F46; color: #ffffff; font-size: 14px; line-height: 19px; box-shadow: 0 8px 24px rgba(0, 20, 50, 0.25);"><span style="width: 22px; height: 22px; border-radius: 11px; background: #009A49; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>{{toastText}}</div>
+</sc-if>
+
+<nav aria-label="Основная навигация" style="flex-shrink: 0; height: 84px; box-sizing: border-box; padding: 6px 4px 20px; display: flex; background: #ffffff; border-top: 1px solid #E3E8EF; box-shadow: 0 -2px 16px rgba(0, 40, 90, 0.06);">
+<a href="Main.html" style="flex-grow: 1; flex-basis: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #5E6673; min-height: 52px;"><span style="width: 56px; height: 30px; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"></path><path d="M6 13.5V20h4v-5h4v5h4v-6.5"></path></svg></span><span style="font-size: 12px; font-weight: 400;">Главная</span></a>
+<a href="Schedule.html" style="flex-grow: 1; flex-basis: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #5E6673; min-height: 52px;"><span style="width: 56px; height: 30px; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12.5V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h8"></path><path d="M17.5 20h.5a2 2 0 0 0 2-2v-1.5"></path><path d="M8 3v4M16 3v4M4 10h16"></path></svg></span><span style="font-size: 12px; font-weight: 400;">Расписание</span></a>
+<a href="Tasks.html" style="flex-grow: 1; flex-basis: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #5E6673; min-height: 52px;"><span style="width: 56px; height: 30px; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7l2 2 3.5-3.5"></path><path d="M4 16.5l2 2L9.5 15"></path><path d="M13 7.5h7M13 17h7"></path></svg></span><span style="font-size: 12px; font-weight: 400;">Задания</span></a>
+<a href="Topics.html" aria-current="page" style="flex-grow: 1; flex-basis: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #005AAA; min-height: 52px;"><span style="width: 56px; height: 30px; border-radius: 15px; background: #EAF2FB; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 14.5V21l-6-4-6 4V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v5.5"></path></svg></span><span style="font-size: 12px; font-weight: 400;">Темы</span></a>
+<a href="More.html" style="flex-grow: 1; flex-basis: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #5E6673; min-height: 52px;"><span style="width: 56px; height: 30px; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1.5"></rect><rect x="14" y="4" width="6" height="6" rx="1.5"></rect><rect x="4" y="14" width="6" height="6" rx="1.5"></rect><path d="M14 17h6M17 14v6"></path></svg></span><span style="font-size: 12px; font-weight: 400;">Ещё</span></a>
+</nav>
+
+<sc-if value="{{sheetOpen}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end;">
+<button type="button" aria-label="Закрыть" onClick="{{closeSheet}}" style="position: absolute; inset: 0; border: none; padding: 0; background: rgba(16, 32, 56, 0.45);"></button>
+
+<sc-if value="{{sheetChoose}}" hint-placeholder-val="{{ true }}">
+<div role="dialog" aria-modal="true" aria-label="{{sheetCaption}}" style="position: relative; height: 680px; border-radius: 24px 24px 0 0; background: #ffffff; display: flex; flex-direction: column; box-shadow: 0 -8px 32px rgba(0, 20, 50, 0.18);">
+<div style="flex-shrink: 0; display: flex; justify-content: center; padding-top: 8px;"><span style="width: 40px; height: 4px; border-radius: 2px; background: #D5DCE5;"></span></div>
+<div style="flex-shrink: 0; display: flex; align-items: flex-start; gap: 8px; padding: 12px 8px 0 20px;">
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 6px;"><div style="font-size: 13px; color: #5E6673;">{{sheetCaption}}</div><h2 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 700; color: #005AAA;">{{sheetTopic}}</h2></div>
+<button type="button" aria-label="Закрыть" onClick="{{closeSheet}}" style="width: 44px; height: 44px; flex-shrink: 0; border: none; border-radius: 12px; background: transparent; color: #5E6673; display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12"></path><path d="M18 6l-4.5 4.5M10.5 13.5 6 18"></path></svg></button>
+</div>
+<div style="flex-shrink: 0; margin: 12px 20px 0; height: 3px; border-radius: 2px; background: linear-gradient(to right, #005AAA 0%, #AB3A8D 75%, #E72B70 100%);"></div>
+<div style="flex-shrink: 0; display: flex; align-items: baseline; justify-content: space-between; padding: 16px 20px 8px;"><div style="font-size: 16px; font-weight: 400;">{{sheetListTitle}}</div><div style="font-size: 14px; color: {{counterColor}};">выбрано {{pickedCount}} из {{pickLimit}}</div></div>
+<div style="flex-shrink: 0; padding: 0 20px 8px; font-size: 13px; line-height: 18px; font-weight: 300; color: #4A515C;">{{sheetInfo}}</div>
+<div role="list" style="flex-grow: 1; min-height: 0; overflow-y: auto; padding: 4px 12px 8px;">
+<sc-for list="{{people}}" as="p" hint-placeholder-count="6">
+<div role="listitem">
+<sc-if value="{{p.available}}" hint-placeholder-val="{{ true }}">
+<button type="button" role="checkbox" aria-checked="{{p.picked}}" disabled="{{p.lockOff}}" onClick="{{p.toggle}}" style="width: 100%; min-height: 56px; display: flex; align-items: center; gap: 12px; padding: 6px 10px; border: none; border-radius: 12px; background: {{p.bg}}; text-align: left; opacity: {{p.opacity}};"><span style="width: 36px; height: 36px; border-radius: 18px; background: #EAF2FB; color: #005AAA; font-size: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">{{p.initials}}</span><span style="flex-grow: 1; font-size: 16px; font-weight: 300; color: #2B2F36;">{{p.name}}</span><span style="width: 24px; height: 24px; border-radius: 6px; box-sizing: border-box; border: {{p.boxBorder}}; background: {{p.boxBg}}; color: #ffffff; display: flex; align-items: center; justify-content: center;"><sc-if value="{{p.picked}}" hint-placeholder-val="{{ false }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></sc-if></span></button>
+</sc-if>
+<sc-if value="{{p.unavailable}}" hint-placeholder-val="{{ false }}">
+<div aria-disabled="true" style="min-height: 56px; display: flex; align-items: center; gap: 12px; padding: 6px 10px;"><span style="width: 36px; height: 36px; border-radius: 18px; background: #F0F2F5; color: #7A8391; font-size: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">{{p.initials}}</span><span style="flex-grow: 1; display: flex; flex-direction: column; gap: 1px;"><span style="font-size: 16px; font-weight: 300; color: #7A8391;">{{p.name}}</span><span style="font-size: 12px; color: #5E6673;">{{p.note}}</span></span></div>
+</sc-if>
+</div>
+</sc-for>
+</div>
+<div style="flex-shrink: 0; padding: 12px 20px 28px; border-top: 1px solid #EEF1F5; display: flex; flex-direction: column; gap: 8px;">
+<button type="button" disabled="{{confirmOff}}" onClick="{{confirmBooking}}" style="height: 52px; border: none; border-radius: 12px; background: {{confirmBg}}; color: {{confirmColor}}; font-size: 17px;">{{confirmLabel}}</button>
+<button type="button" onClick="{{closeSheet}}" style="height: 44px; border: none; border-radius: 12px; background: transparent; color: #005AAA; font-size: 16px;">Отмена</button>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{sheetTaken}}" hint-placeholder-val="{{ false }}">
+<div role="alertdialog" aria-modal="true" aria-label="Тема уже занята" style="position: relative; border-radius: 24px 24px 0 0; background: #ffffff; display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 8px 24px 28px; text-align: center; box-shadow: 0 -8px 32px rgba(0, 20, 50, 0.18);">
+<span style="width: 40px; height: 4px; border-radius: 2px; background: #D5DCE5;"></span>
+<span style="margin-top: 16px; width: 72px; height: 72px; border-radius: 36px; background: #FDEBEF; color: #E70F47; display: flex; align-items: center; justify-content: center;"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 14.5V21l-6-4-6 4V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v5.5"></path><path d="M10 8l4 4M14 8l-4 4"></path></svg></span>
+<h2 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 700; color: #005AAA;">Тема уже занята</h2>
+<p style="margin: 0; font-size: 15px; line-height: 22px; font-weight: 300; color: #4A515C;">Пока вы выбирали, «{{sheetTopic}}» забронировала другая команда. Бронь не создана, приглашения никому не ушли.</p>
+<button type="button" onClick="{{closeSheet}}" style="margin-top: 6px; align-self: stretch; height: 52px; border: none; border-radius: 12px; background: #005AAA; color: #ffffff; font-size: 17px;">Выбрать другую тему</button>
+</div>
+</sc-if>
+</div>
+</sc-if>
+</div>
+</template>
+<script src="../js/dc-lite.js"></script>
+<script src="../js/components/TopicSet-Booked.js"></script>
+<script src="../js/components/TopicSet.js"></script>
+<script>DCLite.mount("TopicSet-Booked", document.getElementById('app'), {});</script>
+</body>
+</html>

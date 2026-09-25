@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Уведомления · push выключены — прототип</title>
+<link rel="icon" href="../img/app-icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&amp;display=swap">
+<link rel="stylesheet" href="../css/app.css">
+</head>
+<body class="proto">
+<a class="proto-back" href="../index.html">← Все экраны</a>
+<div class="device" id="app"></div>
+<template id="tpl-Notifications">
+<div style="width: 390px; height: {{screenHeight}}px; overflow: hidden; background: #ffffff; font-family: 'Roboto', Arial, sans-serif; color: #2B2F36; display: flex; flex-direction: column;">
+
+<header style="flex-shrink: 0; display: flex; flex-direction: column; background: #ffffff; border-bottom: 1px solid #EEF1F5;">
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px 0 8px;">
+<a href="Main.html" style="height: 44px; padding: 0 8px 0 0; display: inline-flex; align-items: center; gap: 2px; color: #005AAA; font-size: 16px; text-decoration: none;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>Назад</a>
+<button type="button" disabled="{{noUnread}}" onClick="{{readAll}}" style="height: 44px; padding: 0 10px; border: none; border-radius: 12px; background: transparent; color: {{readAllColor}}; font-size: 15px; display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12.5l4 4L15 8"></path><path d="M13 16l1 1 7-8"></path></svg>Прочитать все</button>
+</div>
+<h1 style="margin: 0; padding: 4px 20px 12px; font-size: 26px; line-height: 32px; font-weight: 700; color: #005AAA;">Уведомления</h1>
+<div style="padding: 0 20px 12px;">
+<div role="tablist" aria-label="Показать" style="display: flex; height: 44px; padding: 4px; box-sizing: border-box; border-radius: 12px; background: #F0F3F7;">
+<button type="button" role="tab" aria-selected="{{isAll}}" onClick="{{showAll}}" style="flex-grow: 1; flex-basis: 0; border: none; border-radius: 9px; background: {{allBg}}; color: {{allColor}}; font-size: 15px; box-shadow: {{allShadow}};">Все</button>
+<button type="button" role="tab" aria-selected="{{isUnread}}" onClick="{{showUnread}}" style="flex-grow: 1; flex-basis: 0; border: none; border-radius: 9px; background: {{unBg}}; color: {{unColor}}; font-size: 15px; box-shadow: {{unShadow}}; display: flex; align-items: center; justify-content: center; gap: 6px;">Непрочитанные<sc-if value="{{hasUnread}}" hint-placeholder-val="{{ true }}"><span style="min-width: 20px; height: 20px; padding: 0 6px; box-sizing: border-box; border-radius: 10px; background: #E70F47; color: #ffffff; font-size: 12px; font-weight: 700; line-height: 20px;">{{unreadCount}}</span></sc-if></button>
+</div>
+</div>
+</header>
+
+<main style="flex-grow: 1; min-height: 0; overflow-y: auto; padding: 16px 20px 24px; display: flex; flex-direction: column; gap: 20px;">
+
+<sc-if value="{{showPushBanner}}" hint-placeholder-val="{{ true }}">
+<div style="position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 12px; padding: 16px; border-radius: 24px 6px 24px 6px; background: linear-gradient(to top right, #005AAA 0%, #005AAA 35%, #AB3A8D 100%); color: #ffffff; flex-shrink: 0;">
+<div style="display: flex; align-items: flex-start; gap: 12px;">
+<span style="width: 40px; height: 40px; border-radius: 20px; background: rgba(255, 255, 255, 0.18); display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13.5V10a6 6 0 0 0-12 0v6l-1.5 2h15"></path><path d="M10 21h4"></path></svg></span>
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px;"><div style="font-size: 17px; line-height: 22px; font-weight: 700;">Включить push-уведомления</div><div style="font-size: 14px; line-height: 20px; font-weight: 300;">{{pushText}}</div></div>
+</div>
+<sc-if value="{{pushCanEnable}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; gap: 10px;"><button type="button" onClick="{{enablePush}}" style="flex-grow: 1; height: 44px; border: none; border-radius: 12px; background: #ffffff; color: #005AAA; font-size: 16px;">Включить</button><button type="button" onClick="{{hidePush}}" style="height: 44px; padding: 0 16px; border: 1.5px solid rgba(255, 255, 255, 0.7); border-radius: 12px; background: transparent; color: #ffffff; font-size: 16px;">Не сейчас</button></div>
+</sc-if>
+<sc-if value="{{pushIphone}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 12px; background: rgba(255, 255, 255, 0.16); font-size: 14px; line-height: 19px;">«Поделиться»<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="значок Поделиться"><path d="M12 14V3"></path><path d="M8 7l4-4 4 4"></path><path d="M8 11H6a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-2"></path></svg>→ «На экран Домой»</div>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="2">
+<section style="flex-shrink: 0; display: flex; flex-direction: column; gap: 8px;">
+<div style="display: flex; align-items: center; gap: 10px;"><div style="width: 4px; height: 18px; border-radius: 2px; background: linear-gradient(to top, #005AAA, #AB3A8D);"></div><h2 style="margin: 0; font-size: 17px; line-height: 22px; font-weight: 700; color: #005AAA;">{{g.title}}</h2></div>
+<div style="border-radius: 16px; background: #ffffff; box-shadow: 0 1px 2px rgba(0, 40, 90, 0.06), 0 4px 14px rgba(0, 40, 90, 0.06); display: flex; flex-direction: column; overflow: hidden; flex-shrink: 0;">
+<sc-for list="{{g.items}}" as="n" hint-placeholder-count="3">
+<a href="{{n.href}}" aria-label="{{n.aria}}" style="display: flex; align-items: flex-start; gap: 12px; padding: 14px 14px 14px 14px; background: {{n.bg}}; border-top: {{n.border}}; text-decoration: none; color: inherit;">
+<span style="width: 40px; height: 40px; border-radius: 20px; background: {{n.iconBg}}; color: {{n.iconColor}}; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{n.d1}}"></path><path d="{{n.d2}}"></path><path d="{{n.d3}}"></path></svg></span>
+<span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px;">
+<span style="display: flex; align-items: baseline; justify-content: space-between; gap: 8px;"><span style="font-size: 15px; line-height: 20px; font-weight: {{n.titleWeight}}; color: #2B2F36;">{{n.title}}</span><span style="flex-shrink: 0; font-size: 12px; color: #5E6673;">{{n.time}}</span></span>
+<span style="font-size: 14px; line-height: 19px; font-weight: 300; color: #4A515C;">{{n.body}}</span>
+</span>
+<span style="width: 8px; height: 8px; margin-top: 6px; border-radius: 4px; background: {{n.dot}}; flex-shrink: 0;"></span>
+</a>
+</sc-for>
+</div>
+</section>
+</sc-for>
+
+<sc-if value="{{isEmpty}}" hint-placeholder-val="{{ false }}">
+<div style="flex-shrink: 0; margin-top: 24px; padding: 36px 24px; border-radius: 16px; background: #F4F7FB; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center;">
+<span style="width: 64px; height: 64px; border-radius: 32px; background: #ffffff; color: #005AAA; display: flex; align-items: center; justify-content: center;"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13.5V10a6 6 0 0 0-12 0v6l-1.5 2h15"></path><path d="M10 21h4"></path></svg></span>
+<div style="font-size: 19px; font-weight: 400; color: #005AAA;">{{emptyTitle}}</div>
+<div style="font-size: 14px; line-height: 20px; font-weight: 300; color: #4A515C;">{{emptyText}}</div>
+</div>
+</sc-if>
+</main>
+
+<nav aria-label="Основная навигация" style="flex-shrink: 0; height: 84px; box-sizing: border-box; padding: 6px 4px 20px; display: flex; background: #ffffff; border-top: 1px solid #E3E8EF; box-shadow: 0 -2px 16px rgba(0, 40, 90, 0.06);">
+<a href="Main.html" style="flex-grow: 1; flex-basis: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #5E6673; min-height: 52px;"><span style="width: 56px; height: 30px; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"></path><path d="M6 13.5V20h4v-5h4v5h4v-6.5"></path></svg></span><span style="font-size: 12px; font-weight: 400;">Главная</span></a>
+<a href="Schedule.html" style="flex-grow: 1; flex-basis: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #5E6673; min-height: 52px;"><span style="width: 56px; height: 30px; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12.5V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h8"></path><path d="M17.5 20h.5a2 2 0 0 0 2-2v-1.5"></path><path d="M8 3v4M16 3v4M4 10h16"></path></svg></span><span style="font-size: 12px; font-weight: 400;">Расписание</span></a>
+<a href="Tasks.html" style="flex-grow: 1; flex-basis: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #5E6673; min-height: 52px;"><span style="width: 56px; height: 30px; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7l2 2 3.5-3.5"></path><path d="M4 16.5l2 2L9.5 15"></path><path d="M13 7.5h7M13 17h7"></path></svg></span><span style="font-size: 12px; font-weight: 400;">Задания</span></a>
+<a href="Topics.html" style="flex-grow: 1; flex-basis: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #5E6673; min-height: 52px;"><span style="width: 56px; height: 30px; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 14.5V21l-6-4-6 4V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v5.5"></path></svg></span><span style="font-size: 12px; font-weight: 400;">Темы</span></a>
+<a href="More.html" style="flex-grow: 1; flex-basis: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #5E6673; min-height: 52px;"><span style="width: 56px; height: 30px; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1.5"></rect><rect x="14" y="4" width="6" height="6" rx="1.5"></rect><rect x="4" y="14" width="6" height="6" rx="1.5"></rect><path d="M14 17h6M17 14v6"></path></svg></span><span style="font-size: 12px; font-weight: 400;">Ещё</span></a>
+</nav>
+</div>
+</template>
+<script src="../js/dc-lite.js"></script>
+<script src="../js/components/Notifications.js"></script>
+<script>DCLite.mount("Notifications", document.getElementById('app'), {});</script>
+</body>
+</html>

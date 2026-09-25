@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Профиль · подтверждение удаления — прототип</title>
+<link rel="icon" href="../img/app-icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&amp;display=swap">
+<link rel="stylesheet" href="../css/app.css">
+</head>
+<body class="proto">
+<a class="proto-back" href="../index.html">← Все экраны</a>
+<div class="device" id="app"></div>
+<template id="tpl-Profile-Delete">
+<div style="width: 390px; height: 844px; overflow: hidden; background: #ffffff;">
+<dc-import name="Profile" dialog="удаление" screen-height="844" hint-size="390px,844px"></dc-import>
+</div>
+</template>
+<template id="tpl-Profile">
+<div style="width: 390px; height: {{screenHeight}}px; position: relative; overflow: hidden; background: #ffffff; font-family: 'Roboto', Arial, sans-serif; color: #2B2F36; display: flex; flex-direction: column;">
+
+<header style="flex-shrink: 0; display: flex; flex-direction: column; background: #ffffff;">
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px 0 8px;">
+<a href="More.html" style="height: 44px; padding: 0 8px 0 0; display: inline-flex; align-items: center; gap: 2px; color: #005AAA; font-size: 16px; text-decoration: none;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>Ещё</a>
+<a href="Notifications.html" aria-label="Уведомления, 3 непрочитанных" style="position: relative; width: 44px; height: 44px; border-radius: 12px; background: #F4F7FB; color: #005AAA; display: flex; align-items: center; justify-content: center; text-decoration: none;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13.5V10a6 6 0 0 0-12 0v6l-1.5 2h15"></path><path d="M10 21h4"></path></svg><span style="position: absolute; top: 4px; right: 3px; min-width: 18px; height: 18px; padding: 0 5px; box-sizing: border-box; border-radius: 9px; background: #E70F47; color: #ffffff; font-size: 11px; font-weight: 700; line-height: 14px; text-align: center; border: 2px solid #ffffff;">3</span></a>
+</div>
+<h1 style="margin: 0; padding: 4px 20px 8px; font-size: 26px; line-height: 32px; font-weight: 700; color: #005AAA;">Профиль</h1>
+</header>
+
+<main style="flex-grow: 1; min-height: 0; overflow-y: auto; padding: 8px 20px 28px; display: flex; flex-direction: column; gap: 24px;">
+
+<div style="display: flex; flex-direction: column; gap: 14px; padding: 18px 16px; border-radius: 16px; background: #F2F7FD; border: 1px solid #CFE0F3;">
+<div style="display: flex; align-items: center; gap: 14px;">
+<span style="width: 60px; height: 60px; border-radius: 30px; background: #005AAA; color: #ffffff; font-size: 20px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">ВА</span>
+<div style="display: flex; flex-direction: column; gap: 2px;"><div style="font-size: 19px; line-height: 24px; font-weight: 400;">Волкова Анна Сергеевна</div><div style="font-size: 14px; font-weight: 300; color: #4A515C;">Группа [№]</div></div>
+</div>
+<div style="height: 1px; background: #CFE0F3;"></div>
+<div style="display: flex; align-items: center; gap: 12px;">
+<span style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 8px; border: 1.5px dashed #A9B1BD; box-sizing: border-box; background: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #5E6673;">лого</span>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 1px;"><div style="font-size: 13px; color: #5E6673;">Вход выполнен через</div><div style="font-size: 16px;">VK ID</div></div>
+<span style="display: inline-flex; align-items: center; gap: 5px; height: 26px; padding: 0 10px; border-radius: 999px; background: #E8F5EE; color: #235937; font-size: 12px;"><span style="width: 6px; height: 6px; border-radius: 3px; background: #009A49;"></span>подтверждён</span>
+</div>
+<div style="font-size: 12px; line-height: 17px; color: #5E6673;">ФИО берётся из списка группы. Если в нём ошибка — напишите администратору.</div>
+</div>
+
+<section style="display: flex; flex-direction: column; gap: 10px;">
+<div style="display: flex; align-items: center; gap: 10px;"><div style="width: 4px; height: 20px; border-radius: 2px; background: linear-gradient(to top, #005AAA, #AB3A8D);"></div><h2 style="margin: 0; font-size: 18px; line-height: 24px; font-weight: 700; color: #005AAA;">Для поздравлений</h2><span style="font-size: 13px; font-weight: 300; color: #5E6673;">по желанию</span></div>
+<div style="border-radius: 16px; background: #ffffff; box-shadow: 0 1px 2px rgba(0, 40, 90, 0.06), 0 4px 14px rgba(0, 40, 90, 0.06); display: flex; flex-direction: column;">
+<button type="button" style="min-height: 60px; display: flex; align-items: center; gap: 12px; padding: 10px 16px; border: none; background: transparent; text-align: left;"><span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 13px; color: #5E6673;">Дата рождения</span><span style="font-size: 16px; color: #2B2F36;">14 марта 2006</span></span><span style="font-size: 15px; color: #005AAA;">Изменить</span></button>
+<div style="height: 1px; background: #EEF1F5; margin: 0 16px;"></div>
+<div style="display: flex; flex-direction: column; gap: 8px; padding: 12px 16px 14px;">
+<span style="font-size: 13px; color: #5E6673;">Пол</span>
+<div role="radiogroup" aria-label="Пол" style="display: flex; height: 44px; padding: 4px; box-sizing: border-box; border-radius: 12px; background: #F0F3F7;">
+<sc-for list="{{genders}}" as="g" hint-placeholder-count="3"><button type="button" role="radio" aria-checked="{{g.on}}" onClick="{{g.pick}}" style="flex-grow: 1; flex-basis: 0; border: none; border-radius: 9px; background: {{g.bg}}; color: {{g.color}}; font-size: 14px; box-shadow: {{g.shadow}};">{{g.label}}</button></sc-for>
+</div>
+</div>
+</div>
+<div style="font-size: 12px; line-height: 17px; color: #5E6673; padding: 0 4px;">Нужно для баннера в день рождения и поздравлений с 23 февраля и 8 марта. Одногруппники увидят только поздравление.</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 10px;">
+<div style="display: flex; align-items: center; gap: 10px;"><div style="width: 4px; height: 20px; border-radius: 2px; background: linear-gradient(to top, #005AAA, #AB3A8D);"></div><h2 style="margin: 0; font-size: 18px; line-height: 24px; font-weight: 700; color: #005AAA;">Уведомления</h2></div>
+
+<sc-if value="{{pushOn}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 12px; background: #E8F5EE; font-size: 14px; line-height: 19px; color: #235937;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M18 13.5V10a6 6 0 0 0-12 0v6l-1.5 2h15"></path><path d="M10 21h4"></path></svg>Push-уведомления включены на этом устройстве</div>
+</sc-if>
+<sc-if value="{{pushOff}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 12px; padding: 14px 16px; border-radius: 16px; background: #EAF2FB;">
+<div style="display: flex; gap: 12px; font-size: 14px; line-height: 20px; color: #2B2F36;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#005AAA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0;"><path d="M18 13.5V10a6 6 0 0 0-12 0v6l-1.5 2h15"></path><path d="M10 21h4"></path></svg><span>Push выключены — уведомления видны только в колокольчике внутри приложения.</span></div>
+<button type="button" onClick="{{enablePush}}" style="height: 44px; border: none; border-radius: 12px; background: #005AAA; color: #ffffff; font-size: 16px;">Включить push-уведомления</button>
+</div>
+</sc-if>
+<sc-if value="{{pushIphone}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 8px; padding: 14px 16px; border-radius: 16px; background: #FFF1E8;">
+<div style="font-size: 15px; color: #9C3022;">Push на iPhone работают только из установленного приложения</div>
+<div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 14px; line-height: 20px; color: #2B2F36;">Нажмите «Поделиться»<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#005AAA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="значок Поделиться"><path d="M12 14V3"></path><path d="M8 7l4-4 4 4"></path><path d="M8 11H6a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-2"></path></svg>→ «На экран Домой», затем откройте приложение с экрана.</div>
+</div>
+</sc-if>
+
+<div style="border-radius: 16px; background: #ffffff; box-shadow: 0 1px 2px rgba(0, 40, 90, 0.06), 0 4px 14px rgba(0, 40, 90, 0.06); display: flex; flex-direction: column;">
+<sc-for list="{{toggles}}" as="t" hint-placeholder-count="7">
+<div style="display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 6px 12px 6px 16px; border-top: {{t.border}};">
+<span style="flex-grow: 1; font-size: 15px; line-height: 20px; font-weight: 300; color: #2B2F36;">{{t.label}}</span>
+<button type="button" role="switch" aria-checked="{{t.on}}" aria-label="{{t.label}}" onClick="{{t.toggle}}" style="flex-shrink: 0; width: 60px; height: 44px; border: none; background: transparent; padding: 0; display: flex; align-items: center; justify-content: center;"><span style="position: relative; width: 52px; height: 32px; border-radius: 16px; background: {{t.track}}; display: block;"><span style="position: absolute; top: 3px; left: {{t.knob}}; width: 26px; height: 26px; border-radius: 13px; background: #ffffff; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);"></span></span></button>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 10px;">
+<div style="display: flex; align-items: center; gap: 10px;"><div style="width: 4px; height: 20px; border-radius: 2px; background: linear-gradient(to top, #005AAA, #AB3A8D);"></div><h2 style="margin: 0; font-size: 18px; line-height: 24px; font-weight: 700; color: #005AAA;">Данные</h2></div>
+<div style="border-radius: 16px; background: #ffffff; box-shadow: 0 1px 2px rgba(0, 40, 90, 0.06), 0 4px 14px rgba(0, 40, 90, 0.06); display: flex; flex-direction: column;">
+<a href="#" style="min-height: 56px; display: flex; align-items: center; gap: 12px; padding: 8px 16px; text-decoration: none; color: inherit;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#005AAA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12.5V19a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v1"></path><path d="M14 3v5h5"></path></svg><span style="flex-grow: 1; font-size: 15px;">Политика обработки персональных данных</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5E6673" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></a>
+<div style="height: 1px; background: #EEF1F5; margin: 0 16px;"></div>
+<div style="padding: 12px 16px; font-size: 13px; line-height: 18px; color: #5E6673;">Согласие принято 20 сентября 2026 · версия текста 1.0</div>
+</div>
+</section>
+
+<div style="display: flex; flex-direction: column; gap: 10px;">
+<button type="button" onClick="{{askLogout}}" style="height: 52px; border: 1.5px solid #005AAA; border-radius: 12px; background: #ffffff; color: #005AAA; font-size: 17px; display: flex; align-items: center; justify-content: center; gap: 8px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3"></path><path d="M10 8l-4 4 4 4"></path><path d="M6 12h10"></path></svg>Выйти</button>
+<button type="button" onClick="{{askDelete}}" style="height: 52px; border: 1.5px solid #E70F47; border-radius: 12px; background: #ffffff; color: #B0123D; font-size: 17px;">Удалить аккаунт и мои данные</button>
+<div style="font-size: 12px; line-height: 17px; color: #5E6673; text-align: center; padding: 0 12px;">Неофициальное студенческое приложение · версия 1.0</div>
+</div>
+</main>
+
+<nav aria-label="Основная навигация" style="flex-shrink: 0; height: 84px; box-sizing: border-box; padding: 6px 4px 20px; display: flex; background: #ffffff; border-top: 1px solid #E3E8EF; box-shadow: 0 -2px 16px rgba(0, 40, 90, 0.06);">
+<a href="Main.html" style="flex-grow: 1; flex-basis: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #5E6673; min-height: 52px;"><span style="width: 56px; height: 30px; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"></path><path d="M6 13.5V20h4v-5h4v5h4v-6.5"></path></svg></span><span style="font-size: 12px; font-weight: 400;">Главная</span></a>
+<a href="Schedule.html" style="flex-grow: 1; flex-basis: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #5E6673; min-height: 52px;"><span style="width: 56px; height: 30px; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12.5V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h8"></path><path d="M17.5 20h.5a2 2 0 0 0 2-2v-1.5"></path><path d="M8 3v4M16 3v4M4 10h16"></path></svg></span><span style="font-size: 12px; font-weight: 400;">Расписание</span></a>
+<a href="Tasks.html" style="flex-grow: 1; flex-basis: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #5E6673; min-height: 52px;"><span style="width: 56px; height: 30px; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7l2 2 3.5-3.5"></path><path d="M4 16.5l2 2L9.5 15"></path><path d="M13 7.5h7M13 17h7"></path></svg></span><span style="font-size: 12px; font-weight: 400;">Задания</span></a>
+<a href="Topics.html" style="flex-grow: 1; flex-basis: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #5E6673; min-height: 52px;"><span style="width: 56px; height: 30px; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 14.5V21l-6-4-6 4V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v5.5"></path></svg></span><span style="font-size: 12px; font-weight: 400;">Темы</span></a>
+<a href="More.html" aria-current="page" style="flex-grow: 1; flex-basis: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #005AAA; min-height: 52px;"><span style="width: 56px; height: 30px; border-radius: 15px; background: #EAF2FB; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1.5"></rect><rect x="14" y="4" width="6" height="6" rx="1.5"></rect><rect x="4" y="14" width="6" height="6" rx="1.5"></rect><path d="M14 17h6M17 14v6"></path></svg></span><span style="font-size: 12px; font-weight: 400;">Ещё</span></a>
+</nav>
+
+<sc-if value="{{dialogOpen}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end;">
+<button type="button" aria-label="Закрыть" onClick="{{closeDialog}}" style="position: absolute; inset: 0; border: none; padding: 0; background: rgba(16, 32, 56, 0.45);"></button>
+
+<sc-if value="{{isDelete}}" hint-placeholder-val="{{ true }}">
+<div role="alertdialog" aria-modal="true" aria-label="Удалить аккаунт и данные" style="position: relative; border-radius: 24px 24px 0 0; background: #ffffff; display: flex; flex-direction: column; gap: 14px; padding: 8px 20px 28px; box-shadow: 0 -8px 32px rgba(0, 20, 50, 0.18);">
+<span style="align-self: center; width: 40px; height: 4px; border-radius: 2px; background: #D5DCE5;"></span>
+<span style="margin-top: 10px; width: 56px; height: 56px; border-radius: 28px; background: #FDEBEF; color: #E70F47; display: flex; align-items: center; justify-content: center;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"></path><path d="M10 11v6M14 11v6"></path><path d="M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12"></path><path d="M9 7V4h6v3"></path></svg></span>
+<h2 style="margin: 0; font-size: 22px; line-height: 28px; font-weight: 700; color: #005AAA;">Удалить аккаунт и все данные?</h2>
+<div style="display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 21px; font-weight: 300; color: #2B2F36;">
+<div>Мы удалим:</div>
+<div style="display: flex; gap: 10px;"><span style="width: 6px; height: 6px; border-radius: 3px; background: #E70F47; margin-top: 8px; flex-shrink: 0;"></span><span>привязку VK ID, дату рождения и пол;</span></div>
+<div style="display: flex; gap: 10px;"><span style="width: 6px; height: 6px; border-radius: 3px; background: #E70F47; margin-top: 8px; flex-shrink: 0;"></span><span>отметки о заданиях и подписки на уведомления;</span></div>
+<div style="display: flex; gap: 10px;"><span style="width: 6px; height: 6px; border-radius: 3px; background: #E70F47; margin-top: 8px; flex-shrink: 0;"></span><span>вас из брони «Этика искусственного интеллекта» — команда останется без вас.</span></div>
+</div>
+<div style="padding: 10px 12px; border-radius: 12px; background: #FDEBEF; font-size: 14px; line-height: 19px; color: #8B2346;">Это нельзя отменить. Чтобы вернуться, придётся заново войти и ждать подтверждения администратора.</div>
+<a href="Auth-Login.html" style="height: 52px; border-radius: 12px; background: #E70F47; color: #ffffff; font-size: 17px; display: flex; align-items: center; justify-content: center; text-decoration: none;">Удалить навсегда</a>
+<button type="button" onClick="{{closeDialog}}" style="height: 44px; border: none; border-radius: 12px; background: transparent; color: #005AAA; font-size: 16px;">Отмена</button>
+</div>
+</sc-if>
+
+<sc-if value="{{isLogout}}" hint-placeholder-val="{{ false }}">
+<div role="alertdialog" aria-modal="true" aria-label="Выйти из аккаунта" style="position: relative; border-radius: 24px 24px 0 0; background: #ffffff; display: flex; flex-direction: column; gap: 14px; padding: 8px 20px 28px; box-shadow: 0 -8px 32px rgba(0, 20, 50, 0.18);">
+<span style="align-self: center; width: 40px; height: 4px; border-radius: 2px; background: #D5DCE5;"></span>
+<h2 style="margin: 16px 0 0; font-size: 22px; line-height: 28px; font-weight: 700; color: #005AAA;">Выйти из аккаунта?</h2>
+<p style="margin: 0; font-size: 15px; line-height: 22px; font-weight: 300; color: #2B2F36;">Сохранённые на этом телефоне данные — расписание, задания, подборки — будут стёрты. Аккаунт останется: войдёте снова через VK ID без повторного подтверждения.</p>
+<a href="Auth-Login.html" style="height: 52px; border-radius: 12px; background: #005AAA; color: #ffffff; font-size: 17px; display: flex; align-items: center; justify-content: center; text-decoration: none;">Выйти</a>
+<button type="button" onClick="{{closeDialog}}" style="height: 44px; border: none; border-radius: 12px; background: transparent; color: #005AAA; font-size: 16px;">Отмена</button>
+</div>
+</sc-if>
+</div>
+</sc-if>
+</div>
+</template>
+<script src="../js/dc-lite.js"></script>
+<script src="../js/components/Profile-Delete.js"></script>
+<script src="../js/components/Profile.js"></script>
+<script>DCLite.mount("Profile-Delete", document.getElementById('app'), {});</script>
+</body>
+</html>

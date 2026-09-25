@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Выбор себя из списка — прототип</title>
+<link rel="icon" href="../img/app-icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&amp;display=swap">
+<link rel="stylesheet" href="../css/app.css">
+</head>
+<body class="proto">
+<a class="proto-back" href="../index.html">← Все экраны</a>
+<div class="device" id="app"></div>
+<template id="tpl-Auth-PickSelf">
+<div style="width: 390px; height: 844px; overflow: hidden; background: #ffffff; font-family: 'Roboto', Arial, sans-serif; color: #2B2F36; display: flex; flex-direction: column;">
+
+<div style="flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; padding: 8px 20px 0 8px;">
+<a href="Auth-Consent.html" aria-label="Назад" style="width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #005AAA;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a>
+<div style="display: flex; align-items: center; gap: 8px;"><span style="font-size: 13px; color: #5E6673;">Шаг 2 из 2</span><span style="display: flex; gap: 4px;"><span style="width: 20px; height: 4px; border-radius: 2px; background: #005AAA;"></span><span style="width: 20px; height: 4px; border-radius: 2px; background: #005AAA;"></span></span></div>
+</div>
+
+<div style="flex-shrink: 0; padding: 12px 20px 16px; display: flex; flex-direction: column; gap: 8px;">
+<h1 style="margin: 0; font-size: 24px; line-height: 30px; font-weight: 700; color: #005AAA;">Найдите себя в списке</h1>
+<p style="margin: 0; font-size: 15px; line-height: 22px; font-weight: 300;">Это ФИО будет видно в приложении. Администратор один раз подтвердит, что это вы.</p>
+</div>
+
+<div style="flex-shrink: 0; padding: 0 20px 12px;">
+<label style="display: flex; align-items: center; gap: 10px; height: 48px; padding: 0 14px; box-sizing: border-box; border-radius: 12px; background: #F4F7FB; border: 1px solid #E3E8EF; color: #5E6673;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.5 11A6.5 6.5 0 1 0 11 17.5"></path><path d="M16 16l4 4"></path></svg><input type="search" value="{{q}}" onInput="{{onSearch}}" placeholder="Начните вводить фамилию" aria-label="Поиск по списку группы" style="flex-grow: 1; min-width: 0; border: none; background: transparent; font-family: inherit; font-size: 16px; font-weight: 300; color: #2B2F36; outline: none;"></label>
+</div>
+
+<div style="flex-grow: 1; min-height: 0; position: relative;">
+<div role="list" aria-label="Список группы" style="position: absolute; inset: 0; overflow-y: auto; padding: 0 20px 16px; display: flex; flex-direction: column; gap: 6px;">
+<div style="font-size: 13px; color: #5E6673; padding: 4px 4px 2px;">{{countLabel}}</div>
+<sc-for list="{{people}}" as="p" hint-placeholder-count="8">
+<div role="listitem">
+<sc-if value="{{p.isSelected}}" hint-placeholder-val="{{ false }}">
+<button type="button" aria-pressed="true" onClick="{{p.pick}}" style="width: 100%; min-height: 56px; display: flex; align-items: center; gap: 12px; padding: 8px 14px 8px 10px; box-sizing: border-box; border-radius: 14px; border: 1.5px solid #005AAA; background: #F2F7FD; text-align: left;"><span style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 18px; background: #005AAA; color: #ffffff; font-size: 14px; display: flex; align-items: center; justify-content: center;">{{p.initials}}</span><span style="flex-grow: 1; font-size: 16px; line-height: 21px; font-weight: 400; color: #005AAA;">{{p.name}}</span><span style="width: 24px; height: 24px; border-radius: 12px; background: #005AAA; color: #ffffff; display: flex; align-items: center; justify-content: center;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span></button>
+</sc-if>
+<sc-if value="{{p.isFree}}" hint-placeholder-val="{{ true }}">
+<button type="button" aria-pressed="false" onClick="{{p.pick}}" style="width: 100%; min-height: 56px; display: flex; align-items: center; gap: 12px; padding: 8px 14px 8px 10px; box-sizing: border-box; border-radius: 14px; border: 1.5px solid transparent; background: #ffffff; text-align: left;"><span style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 18px; background: #EAF2FB; color: #005AAA; font-size: 14px; display: flex; align-items: center; justify-content: center;">{{p.initials}}</span><span style="flex-grow: 1; font-size: 16px; line-height: 21px; font-weight: 300; color: #2B2F36;">{{p.name}}</span><span style="width: 24px; height: 24px; border-radius: 12px; border: 2px solid #A9B1BD; box-sizing: border-box;"></span></button>
+</sc-if>
+<sc-if value="{{p.isTaken}}" hint-placeholder-val="{{ false }}">
+<div aria-disabled="true" style="min-height: 56px; display: flex; align-items: center; gap: 12px; padding: 8px 14px 8px 10px; box-sizing: border-box; border-radius: 14px;"><span style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 18px; background: #F0F2F5; color: #7A8391; font-size: 14px; display: flex; align-items: center; justify-content: center;">{{p.initials}}</span><span style="flex-grow: 1; display: flex; flex-direction: column; gap: 1px;"><span style="font-size: 16px; line-height: 21px; font-weight: 300; color: #7A8391;">{{p.name}}</span><span style="font-size: 12px; color: #5E6673;">уже в приложении</span></span></div>
+</sc-if>
+</div>
+</sc-for>
+<sc-if value="{{isEmpty}}" hint-placeholder-val="{{ false }}">
+<div style="padding: 28px 16px; border-radius: 16px; background: #F4F7FB; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center;">
+<div style="font-size: 17px; font-weight: 400; color: #005AAA;">Никого не нашли</div>
+<div style="font-size: 14px; line-height: 20px; font-weight: 300; color: #4A515C;">Проверьте написание. Если вас нет в списке — напишите администратору группы.</div>
+</div>
+</sc-if>
+</div>
+</div>
+
+<div style="flex-shrink: 0; padding: 12px 20px 28px; display: flex; flex-direction: column; gap: 10px; border-top: 1px solid #EEF1F5; box-shadow: 0 -2px 16px rgba(0, 40, 90, 0.05); background: #ffffff;">
+<sc-if value="{{hasSelection}}" hint-placeholder-val="{{ true }}">
+<a href="Auth-Pending.html" style="height: 52px; border-radius: 12px; background: #005AAA; color: #ffffff; font-size: 17px; font-weight: 400; display: flex; align-items: center; justify-content: center; text-decoration: none;">Это я — {{selectedShort}}</a>
+</sc-if>
+<sc-if value="{{noSelection}}" hint-placeholder-val="{{ false }}">
+<button type="button" disabled style="height: 52px; border: none; border-radius: 12px; background: #E3E8EF; color: #7A8391; font-size: 17px; font-weight: 400;">Выберите себя в списке</button>
+</sc-if>
+<a href="#" style="align-self: center; height: 44px; display: inline-flex; align-items: center; font-size: 15px; color: #005AAA; text-decoration: none;">Меня нет в списке</a>
+</div>
+
+</div>
+</template>
+<script src="../js/dc-lite.js"></script>
+<script src="../js/components/Auth-PickSelf.js"></script>
+<script>DCLite.mount("Auth-PickSelf", document.getElementById('app'), {});</script>
+</body>
+</html>
